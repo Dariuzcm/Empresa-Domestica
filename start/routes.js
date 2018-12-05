@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('index')
+Route.get('/','ServiceController.index')
 //--------------login-------------------
 Route.group(()=>{
     Route.get('register','UserController.getForm')

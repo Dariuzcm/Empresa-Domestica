@@ -9,6 +9,7 @@ class ServiceController {
         }else
             return view.render('service.list',{services: service.toJSON(), flag:false })
     }
+ 
     async getEditService({view, params}){
         const service= await Service.query()
                 .where('id', params.id)
@@ -67,6 +68,12 @@ class ServiceController {
             return response.redirect('back')
         }
         return response.redirect('/servicios/list')
+    }
+    async index({view}){
+        const nameService= await Service.query()
+        .select('name','id')
+        .fetch()
+        return view.render('index',{nameService: nameService.toJSON()})
     }
 }
 module.exports = ServiceController

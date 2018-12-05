@@ -9,7 +9,7 @@
             <tr>
                 <th scope="col">Nombre de Servicio</th>
                 <th scope="col">Descripción</th>
-                <th scope="col">Precio</th>
+                <th scope="col">Precio Mensual</th>
                 <th scope="col"></th>
             </tr>
     
@@ -18,18 +18,24 @@
                 <td>{{service.name}}</td>
                 <td>{{service.description}}</td>
                 <td>${{service.price}}</td>
-                <td><a href="/servicios/edit/{{service.id}}" ><button class="btn btn-primary">Editar</button></a></td>
-            <form action="{{'/servicios/list/'+service.id+'?_method=DELETE'}}" method="POST">
-                    {{ csrfField() }}
-                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
-                </form>
+        @loggedIn
+        <td><a href="/servicios/edit/{{service.id}}" ><button class="btn btn-primary">Editar</button></a></td>
+        <form action="{{'/servicios/list/'+service.id+'?_method=DELETE'}}" method="POST">
+                {{ csrfField() }}
+            <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+            </form>
+        @else
+            <td><a href="/servicios/comprar/{{service.id}}" ><button class="btn btn-primary">Comprar</button></a></td>
+        @endloggedIn
             </tr>
         @endeach
     </table>
     @else   
         <h4>No hay Servicios Registrados</h4>
     @endif
-    <a href="/servicios/register" class="btn btn-success">Añadir Servicio</a>
+    @loggedIn
+    <a href="/servicios/register" class="btn btn-success">Añadir Servicio</a>      
+    @endloggedIn
 
     </div>
 @endsection

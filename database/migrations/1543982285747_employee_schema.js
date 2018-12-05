@@ -12,6 +12,7 @@ class EmployeeSchema extends Schema {
       table.string('phone',20)
       table.string('address',100)
       table.string('adscription',50)
+      table.integer('enCola')
       table.integer('borningDate')
       table.timestamps()
     })
