@@ -23,6 +23,11 @@ Route.group(()=>{
     Route.post('register','UserController.registry')
     Route.get('list','UserController.UserList')
     Route.get('edit/:id','UserController.getEditionForm')
-    Route.post('update','UserController.update')
+    Route.put('edit/:id','UserController.update')
+    Route.delete('list/:id','UserController.destroy')
 }).prefix('usuarios')
+    
+Route.get('login',({view})=>{return view.render('user.login')})    
+Route.post('login','UserController.login')
+
 

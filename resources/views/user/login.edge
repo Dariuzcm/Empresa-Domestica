@@ -1,0 +1,17 @@
+@layout('layout')
+@section('content')
+    <div class="card col-6">
+    <form action="" method="post" class="form">
+        {{ csrfField() }}
+        <div class="card-title"><h4>Login</h4></div>
+        @if(old('notification'))
+    <div class="alert alert-{{old('notification.type')}}">{{{old('notification.message')}}}</div>          
+        @endif
+        <div class="card-body">
+            <input type="email" name="email" class="form-control"  placeholder="Escribe tu email">
+            <input type="password" name="password" class="form-control" placeholder="Escribe tu contraseña">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+        </div>            
+    </form>
+    </div>
+@endsection
