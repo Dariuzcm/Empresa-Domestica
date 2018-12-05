@@ -1,0 +1,17 @@
+@layout('layout')
+@section('content')
+<div class="container">
+    @if(employ)
+    @each(employ in employ)
+    <label for="name">Nombre de Empleado</label>
+        <input id="name" type="text" class="form-control" value="{{employ.name}}">
+    <label for="phone">Telefono de Empleado</label>
+        <input id="phone" type="text" class="form-control" value="{{employ.phone}}">
+    <label for="date">Fecha de Contrato</label>
+    <textarea name="" id="" cols="100" rows="2">{{date}}</textarea>
+    
+    @endeach
+   @endif
+</div>
+  
+@endsection

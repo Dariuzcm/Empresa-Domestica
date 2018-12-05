@@ -1,6 +1,7 @@
 'use strict'
 const Contract=use('App/Models/Contract')
 const Employee= use('App/Models/Employee')
+const Service = use('App/Models/Service')
 class ContractController {
     async makeContract({request,session,response}){
         const employ= await Employee.query().orderBy('enCola','asc').first()
@@ -26,7 +27,11 @@ class ContractController {
                             contract: contract.toJSON()
                         }
                     })
-                    return response.redirect('back', { user: user.toJSON() })
+                    return response.redirect('/service/contract/', { 
+                        employ: employ.toJSON(), 
+                        date: petition_date ,
+                        service: service.toJSON()
+                    })
         
                 }
 

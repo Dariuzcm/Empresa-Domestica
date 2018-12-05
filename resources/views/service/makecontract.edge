@@ -1,0 +1,44 @@
+@layout('layout')
+@section('content')
+<div class="container">
+    <div class="card col-6">
+    
+      <form action="" method="post">        
+   
+        {{ csrfField() }}
+        @if(old('notification'))
+    <div class="alert alert-{{old('notification.type')}}" role="alert">
+        {{{old('notification.message')}}}
+    </div>          
+        @endif
+        @if(user)
+            @each(user in user)
+                <div class="card title"><h4>Registro de Usuario</h4></div>
+                <div class="card-body">
+                    <div class="form-group row">
+                    <input type="text" name="username" placeholder="Nombre de Usuario" class="form-control" value="{{user.username}}" required>
+                    </div>  <div class="form-group row">
+                        <input type="email" name="email" class="form-control" required {{{'value="'+user.email+'"'}}} placeholder="Email">
+                    </div>  <div class="form-group row">
+                        <input type="password" name="password"  class="form-control" required placeholder="Contraseña">
+                    </div>
+                    <center><button  class="btn btn-primary" type="submit">Registrar</button></center>
+                </div>
+            @endeach 
+       @else
+       <div class="card title"><h4>Registro de Cliente</h4></div>
+       <div class="card-body">
+           <div class="form-group row">
+           <input type="text" name="name" placeholder="Nombre de Cliente" class="form-control" required>
+           </div>  <div class="form-group row">
+               <input type="email" name="email" class="form-control" required placeholder="Email">
+           </div>  <div class="form-group row">
+               <input type="password" name="password"  class="form-control" required placeholder="Contraseña">
+           </div>
+           <center><button  class="btn btn-primary" type="submit">Registrar</button></center>
+     
+        @endif
+    </form>
+    </div>
+</div>
+@endsection
