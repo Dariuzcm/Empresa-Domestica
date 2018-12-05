@@ -1,0 +1,38 @@
+@layout('layout')
+@section('content')
+<div class="container">
+    <div class="card col-6">
+    
+    
+        @if(service)
+   
+            @yield(old('notification'))
+                <div class="alert alert-{{old('notification.type')}}" role="alert">
+                    {{{old('notification.message')}}}
+                </div>          
+            @endyield
+            @each(service in service)
+            <form action="/servicios/edit/{{service.id}}?_method=PUT" method="post">        
+                {{ csrfField() }}
+
+                <div class="card title"><h4>Editar de Servicio</h4></div>
+                <div class="card-body">
+                    <div class="form-group row">
+                    <input type="text" name="name" placeholder="Nombre de Servicio" class="form-control" value="{{service.name}}" required>
+                    </div>  
+                    <div class="form-group row" >
+                        <textarea name="description" placeholder="Descripción de Servicio" class="form-group" cols="100" rows="5"> {{service.description}}</textarea>
+                    </div>  
+                    <div class="form-group row" >
+                        <input type="money" name="price" placeholder="Precio de Servicio" class="form-control" value="{{service.price}}" required>
+                    </div>
+                    <center><button  class="btn btn-primary" type="submit">Actualizar</button></center>
+                </div>
+            @endeach 
+       @else
+                <h4>Algo va mal : No existe </h4>
+        @endif
+    </form>
+    </div>
+</div>
+@endsection

@@ -15,7 +15,13 @@ class EmployeeController {
         })
         try {
             await employee.save()
-           
+            session.flash({
+                notification:{
+                    type: 'success',
+                    message: 'Empleado Registrado Exitosamente!',
+                    employee: employee.toJSON()
+                }
+            })
         } catch (error) {
             session.flash({
                 notification:{
@@ -26,11 +32,15 @@ class EmployeeController {
             })
             return response.redirect('back')
         }
-        return response.redirect('/employee/list')
+        return response.redirect('/empleados/list')
     }
     async EmployeeList({view}){
-        const employee= await Employee.all()
-        return view.render('employee.list',{employees: employee.toJSON()})
+        const employee = await Employee.all()
+        if(await Employee.getCount()>0)
+           return view.render('employee.list',{employees: employee.toJSON(), flag:true})
+        else
+          return view.render('employee.list',{employees: employee.toJSON(), flag:false})
+
     }
     async getEmployee({params,view}){
         const employee= await Employee.query().where('id',params.id).fetch()

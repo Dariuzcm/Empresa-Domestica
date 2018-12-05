@@ -1,0 +1,48 @@
+@layout('layout')
+@section('content')
+<div class="container">
+    <div class="card col-6">
+    
+      <form action="" method="post">        
+   
+        {{ csrfField() }}
+        @if(old('notification'))
+    <div class="alert alert-{{old('notification.type')}}" role="alert">
+        {{{old('notification.message')}}}
+    </div>          
+        @endif
+        @if(service)
+            @each(service in service)
+                <div class="card title"><h4>Registro de Servicio</h4></div>
+                <div class="card-body">
+                    <div class="form-group row">
+                    <input type="text" name="name" placeholder="Nombre de Servicio" class="form-control" value="{{service.name}}" required>
+                    </div>  
+                    <div class="form-group row" placeholder="Descripción de Servicio" value="{{service.description}}">
+                        <textarea name="description" placeholder="Descripción de Servicio" class="form-group" cols="100" rows="5"></textarea>
+                    </div>  
+                    <div class="form-group row" value="{{service.description}}">
+                        <input type="money" name="price" placeholder="Precio de Servicio" class="form-control" value="{{service.price}}" required>
+                    </div>
+                    <center><button  class="btn btn-primary" type="submit">Registrar</button></center>
+                </div>
+            @endeach 
+       @else
+       <div class="card title"><h4>Registro de Servicio</h4></div>
+       <div class="card-body">
+            <div class="form-group row">
+               <input type="text" name="name" placeholder="Nombre de Servicio" class="form-control" required>
+            </div>  
+            <div class="form-group row" >
+                <textarea name="description" placeholder="Descripción de Servicio" cols="100" rows="5"></textarea>
+            </div>
+            <div class="form-group row">
+                <input type="money" name="price" placeholder="Precio de Servicio" class="form-control"required>
+            </div>
+           <center><button  class="btn btn-primary" type="submit">Registrar</button></center>
+     
+        @endif
+    </form>
+    </div>
+</div>
+@endsection

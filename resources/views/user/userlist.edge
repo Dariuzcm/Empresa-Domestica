@@ -4,7 +4,7 @@
         @if(old('notification'))
     <div class="alert alert-{{old('notification.type')}}">{{{old('notification.message')}}}</div>
         @endif
-        @if(users)
+        @if(flag)
         <table class="table">
             <tr>
                 <th scope="col">Nombre de Usuario</th>

@@ -12,10 +12,10 @@ class UserController {
     }
     async UserList({ view }) {
         const user = await User.all()
-
-
-        return view.render('user.userList', { users: user.toJSON() })
-
+        if(await User.getCount()>0)
+         return view.render('user.userList', { users: user.toJSON(), flag:true })
+        else 
+        return view.render('user.userList', { users: user.toJSON(), flag:false })
     }
     //----------------------------Login----------------
     async login({ request, auth, session, response }) {

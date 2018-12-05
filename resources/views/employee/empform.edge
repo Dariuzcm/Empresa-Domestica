@@ -1,15 +1,33 @@
 @layout('layout')
 @section('content')
-<h4>Registro de Empleado</h4>
-<form action="" method="post" class="form col-5">
+<div class="container card col-7">
+    <div class="card-title">
+      <center><h4>Registro de Empleado</h4></center>
+    </div>
+        <form action="" method="post" class="form container" style="width:90%; " >
+    <center>
     {{ csrfField() }}
-    <input type="text" class="from-control" name="name" required placeholder="Escribe el Nombre del empleado" >
-    <input type="email" class="from-control" name="email" required placeholder="Escribe el Email del empleado">
-    <input type="phone" class="from-control" name="phone" required placeholder="Telefono">
-    <input type="text" class="from-control" name="address" required placeholder="Dirección">
-    <input type="text" class="from-control" name="adscription" required placeholder="Puesto desempeñado">
-    <input type="number" name="borningDate" required placeholder="Edad">
+    <div class="form-group row ">
+    <input type="text" class="form-control" name="name" required placeholder="Escribe el Nombre del empleado" >
+    </div>
+    <div class="form-group row">
+        <input type="email" class="form-control" name="email" required placeholder="Escribe el Email del empleado">
+    </div>
+    <div class="form-group row">
+        <input type="phone" class="form-control" name="phone" required placeholder="Telefono">
+    </div>
+    <div class="form-group row">
+        <input type="text" class="form-control" name="address" required placeholder="Dirección">
+    </div>
+    <div class="form-group row">
+        <input type="text" class="form-control" name="adscription" required placeholder="Puesto desempeñado">
+    </div>
+    <div class="form-group row">
+        <input type="number" name="borningDate" class="form-control" required placeholder="Edad">
+    </div>
 
-    <button type="submit">Registrar</button>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</center>
 </form>
+</div>
 @endsection

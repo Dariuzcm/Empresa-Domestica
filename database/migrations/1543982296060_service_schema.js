@@ -9,7 +9,7 @@ class ServiceSchema extends Schema {
       table.increments()
       table.string('name',50)
       table.text('description')
-
+      table.double('price',8,2)
       table.timestamps()
     })
   }

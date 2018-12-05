@@ -1,0 +1,35 @@
+@layout('layout')
+@section('content')
+    <div class="container">
+        @if(old('notification'))
+    <div class="alert alert-{{old('notification.type')}}">{{{old('notification.message')}}}</div>
+        @endif
+        @if(flag)
+        <table class="table">
+            <tr>
+                <th scope="col">Nombre de Servicio</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+            </tr>
+    
+        @each(service in services)
+            <tr>
+                <td>{{service.name}}</td>
+                <td>{{service.description}}</td>
+                <td>${{service.price}}</td>
+                <td><a href="/servicios/edit/{{service.id}}" ><button class="btn btn-primary">Editar</button></a></td>
+            <form action="{{'/servicios/list/'+service.id+'?_method=DELETE'}}" method="POST">
+                    {{ csrfField() }}
+                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+                </form>
+            </tr>
+        @endeach
+    </table>
+    @else   
+        <h4>No hay Servicios Registrados</h4>
+    @endif
+    <a href="/servicios/register" class="btn btn-success">Añadir Servicio</a>
+
+    </div>
+@endsection

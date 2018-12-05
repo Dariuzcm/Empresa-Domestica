@@ -40,3 +40,12 @@ Route.group(()=>{
     Route.put('edit/:id','EmployeeController.update')
     Route.delete('list/:id','EmployeeController.destroy')
 }).prefix('empleados')
+//------------Services-------------------
+Route.group(()=>{
+    Route.get('list','ServiceController.getServices')
+    Route.post('register','ServiceController.AddService') 
+    Route.get('register',({view})=>{return view.render('service.form')}) 
+    Route.get('edit/:id','ServiceController.getEditService')
+    Route.put('edit/:id','ServiceController.update')
+    Route.delete('list/:id','ServiceController.destroy')
+}).prefix('servicios')
