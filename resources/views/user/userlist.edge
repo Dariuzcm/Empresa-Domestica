@@ -1,0 +1,21 @@
+@layout('layout')
+@section('content')
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th scope="col">Nombre de Usuario</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        @each(user in users)
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td><a href="/usuarios/edit/{{user.id}}" ><button class="btn btn-primary">Editar</button></a></td>
+                <td><a href="/usuarios/delete/{{user.id}}" ><button class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        @endeach
+    </table>
+    </div>
+@endsection
