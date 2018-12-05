@@ -1,0 +1,15 @@
+@layout('layout')
+@section('content')
+<h4>Registro de Empleado</h4>
+<form action="" method="post" class="form col-5">
+    {{ csrfField() }}
+    <input type="text" class="from-control" name="name" required placeholder="Escribe el Nombre del empleado" >
+    <input type="email" class="from-control" name="email" required placeholder="Escribe el Email del empleado">
+    <input type="phone" class="from-control" name="phone" required placeholder="Telefono">
+    <input type="text" class="from-control" name="address" required placeholder="Dirección">
+    <input type="text" class="from-control" name="adscription" required placeholder="Puesto desempeñado">
+    <input type="number" name="borningDate" required placeholder="Edad">
+
+    <button type="submit">Registrar</button>
+</form>
+@endsection

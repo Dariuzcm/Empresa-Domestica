@@ -27,7 +27,16 @@ Route.group(()=>{
     Route.delete('list/:id','UserController.destroy')
 }).prefix('usuarios')
     
-Route.get('login',({view})=>{return view.render('user.login')})    
-Route.post('login','UserController.login')
+Route.get('admin',({view})=>{return view.render('user.login')})    
+Route.post('admin','UserController.login')
+Route.get('logout','UserController.logout')
 
-
+//--------Employees---------------
+Route.group(()=>{
+    Route.get('list','EmployeeController.EmployeeList')   
+    Route.post('register','EmployeeController.addEmployee') 
+    Route.get('register',({view})=>{return view.render('employee.empform')}) 
+    Route.get('edit/:id','EmployeeController.getEmployee')
+    Route.put('edit/:id','EmployeeController.update')
+    Route.delete('list/:id','EmployeeController.destroy')
+}).prefix('empleados')

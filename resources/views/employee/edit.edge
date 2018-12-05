@@ -1,0 +1,28 @@
+@layout('layout')
+@section('content')
+<h4>Editar de Empleado</h4>
+
+@each(employee in employees)
+<form action="/empleados/edit/{{employee.id +'?_method=PUT'}}" method="post" class="form card col-6">
+    {{ csrfField() }}
+<input type="text" class="form-control" name="name" required value="{{employee.name}}"placeholder="Escribe el Nombre del empleado">
+<div class="form-group row">
+    <input type="email" class="form-control" name="email" required value="{{employee.email}}" placeholder="Escribe el Email del empleado">
+</div>
+<div class="form-group row">
+        <input type="text" class="form-control" name="address" required value="{{employee.address}}" placeholder="Dirección">
+    </div>
+    <div class="form-group row">
+        <input type="phone" class="form-control" name="phone" required value="{{employee.phone}}" placeholder="Telefono">
+    </div>
+    <div class="form-group row">
+        <input type="text" class="form-control" name="adscription" required value="{{employee.adscription}}" placeholder="Puesto desempeñado">
+    </div>
+    <div class="form-group row">
+        <input type="number" name="borningDate" value="{{employee.borningDate}}">
+    </div>
+
+    <button class="btn-primary"type="submit">Actualizar</button>
+</form>
+@endeach
+@endsection

@@ -1,0 +1,39 @@
+@layout('layout')
+@section('content')
+    <div class="container">
+        @if(old('notification'))
+    <div class="alert alert-{{old('notification.type')}}">{{{old('notification.message')}}}</div>
+        @endif
+        @if(employees)
+        <table class="table">
+            <tr>
+                <th scope="col">Nombre de Empleado</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Puesto desempeñado</th>
+                <th scope="col">Edad</th>
+                <th scope="col"></th>
+            </tr>
+    
+        @each(employee in employees)
+            <tr>
+                <td>{{employee.name}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.phone}}</td>
+                <td>{{employee.address}}</td>
+                <td>{{employee.adscription}}</td>
+                <td>{{employee.borningDate}}</td>
+                <td><a href="/empleados/edit/{{employee.id}}" ><button class="btn btn-primary">Editar</button></a></td>
+            <form action="{{'/empleados/list/'+employee.id+'?_method=DELETE'}}" method="POST">
+                    {{ csrfField() }}
+                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+                </form>
+            </tr>
+        @endeach
+    </table>
+    @else   
+        <h4>No hay usuarios Registrados</h4>
+    @endif
+    </div>
+@endsection
